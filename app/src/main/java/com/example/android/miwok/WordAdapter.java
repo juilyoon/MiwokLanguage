@@ -1,11 +1,13 @@
 package com.example.android.miwok;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class WordAdapter extends ArrayAdapter<Word> {
         }
 
         // Get the {@link Word} object located at this position in the list
-        Word currentWord = getItem(position);
+        final Word currentWord = getItem(position);
 
         // Find the ImageView in the list_item_2text_image.xml layout with the ID item_imageview
         int imageResourceId = currentWord.getImageResourceId();
