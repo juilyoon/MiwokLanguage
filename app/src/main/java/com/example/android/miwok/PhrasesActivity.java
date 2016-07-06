@@ -17,12 +17,33 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class PhrasesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phrases);
+        setContentView(R.layout.word_list);
+
+        // Generate translations of number words
+        // From dictionary https://docs.google.com/document/d/16sQ-0r5zMrdRXUwOaYbTLNXADasuSYFpy7K0Bn8oVfg/pub?embedded=true
+        ArrayList<Word> phraseList= new ArrayList<Word>();
+        phraseList.add(new Word("minto wuksus", "Where are you going?"));
+        phraseList.add(new Word("tinnә oyaase'nә", "What is your name?"));
+        phraseList.add(new Word("oyaaset...", "My name is..."));
+        phraseList.add(new Word("michәksәs?", "How are you feeling?"));
+        phraseList.add(new Word("kuchi achit", "I'm feeling good."));
+        phraseList.add(new Word("әәnәs'aa?", "Are you coming?"));
+        phraseList.add(new Word("hәә’ әәnәm", "Yes, I'm coming."));
+        phraseList.add(new Word("әәnәm", "I'm coming."));
+        phraseList.add(new Word("yoowutis", "Let's go."));
+        phraseList.add(new Word("әnni'nem", "Come here."));
+
+        WordAdapter itemsAdapter = new WordAdapter(this, phraseList);
+        ListView list = (ListView) findViewById(R.id.list_view);
+        list.setAdapter(itemsAdapter);
     }
 }

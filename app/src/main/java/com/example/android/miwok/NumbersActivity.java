@@ -17,12 +17,42 @@ package com.example.android.miwok;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class NumbersActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_numbers);
+        setContentView(R.layout.word_list);
+
+        // Generate translations of number words
+        // From dictionary at https://docs.google.com/document/d/16sQ-0r5zMrdRXUwOaYbTLNXADasuSYFpy7K0Bn8oVfg/pub?embedded=true
+        ArrayList<Word> numberList= new ArrayList<Word>();
+        numberList.add(new Word("lutti", "one", R.drawable.number_one));
+        numberList.add(new Word("otiiko", "two", R.drawable.number_two));
+        numberList.add(new Word("tolookosu", "three", R.drawable.number_three));
+        numberList.add(new Word("oyyisa", "four", R.drawable.number_four));
+        numberList.add(new Word("massokka", "five", R.drawable.number_five));
+        numberList.add(new Word("temmokka", "six", R.drawable.number_six));
+        numberList.add(new Word("kenekaku", "seven", R.drawable.number_seven));
+        numberList.add(new Word("kawinta", "eight", R.drawable.number_eight));
+        numberList.add(new Word("wo'e", "nine", R.drawable.number_nine));
+        numberList.add(new Word("na'aacha", "ten", R.drawable.number_ten));
+
+        WordAdapter itemsAdapter = new WordAdapter(this, numberList);
+        ListView list = (ListView) findViewById(R.id.list_view);
+        list.setAdapter(itemsAdapter);
     }
 }

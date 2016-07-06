@@ -18,6 +18,7 @@ package com.example.android.miwok;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
@@ -43,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent numbersIntent = new Intent(MainActivity.this, NumbersActivity.class);
 
                 // Start the new activity
+                Log.v("MainActivity", "Open numbers.");
                 startActivity(numbersIntent);
             }
         });
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent familyIntent = new Intent(MainActivity.this, FamilyActivity.class);
 
                 // Start the new activity
+                Log.v("MainActivity", "Open family.");
                 startActivity(familyIntent);
             }
         });
@@ -75,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent colorsIntent = new Intent(MainActivity.this, ColorsActivity.class);
 
                 // Start the new activity
+                Log.v("MainActivity", "Open colours.");
                 startActivity(colorsIntent);
             }
         });
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent phrasesIntent = new Intent(MainActivity.this, PhrasesActivity.class);
 
                 // Start the new activity
+                Log.v("MainActivity", "Open phrases.");
                 startActivity(phrasesIntent);
             }
         });
