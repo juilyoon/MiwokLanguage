@@ -25,4 +25,11 @@
             style="@style/DefaultStyle"
             tools:text="one"/>
     </LinearLayout>
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_margin="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_play_circle_filled_white_24dp"/>
 </RelativeLayout>
