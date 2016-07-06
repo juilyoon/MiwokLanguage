@@ -42,11 +42,9 @@ public class ColorsActivity extends AppCompatActivity {
         colourList.add(new Word("ṭopiisә", "dusty yellow", R.drawable.color_dusty_yellow));
         colourList.add(new Word("chiwiiṭә", "mustard yellow", R.drawable.color_mustard_yellow));
 
-        // Set vocabulary background colour
-
-
         WordAdapter itemsAdapter = new WordAdapter(this, colourList);
         ListView list = (ListView) findViewById(R.id.list_view);
+        list.setBackgroundColor(getResources().getColor(R.color.category_colors));
         list.setAdapter(itemsAdapter);
     }
 }

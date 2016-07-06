@@ -53,6 +53,7 @@ public class NumbersActivity extends AppCompatActivity {
 
         WordAdapter itemsAdapter = new WordAdapter(this, numberList);
         ListView list = (ListView) findViewById(R.id.list_view);
+        list.setBackgroundColor(getResources().getColor(R.color.category_numbers));
         list.setAdapter(itemsAdapter);
     }
 }

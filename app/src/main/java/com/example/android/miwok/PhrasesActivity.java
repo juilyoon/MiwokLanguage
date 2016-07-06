@@ -44,6 +44,7 @@ public class PhrasesActivity extends AppCompatActivity {
 
         WordAdapter itemsAdapter = new WordAdapter(this, phraseList);
         ListView list = (ListView) findViewById(R.id.list_view);
+        list.setBackgroundColor(getResources().getColor(R.color.category_phrases));
         list.setAdapter(itemsAdapter);
     }
 }
