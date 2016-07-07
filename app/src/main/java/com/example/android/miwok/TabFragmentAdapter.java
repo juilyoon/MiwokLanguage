@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class TabFragmentAdapter extends FragmentPagerAdapter {
 
-    private Fragment[] pages = new Fragment[]{new NumbersFragment()};
+    private Fragment[] pages = new Fragment[]{new NumbersFragment(), new ColorsFragment(), new FamilyFragment(), new PhrasesFragment()};
 
     public TabFragmentAdapter(FragmentManager fm) {
         super(fm);

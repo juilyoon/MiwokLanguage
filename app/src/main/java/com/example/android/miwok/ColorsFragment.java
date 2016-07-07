@@ -18,17 +18,19 @@ package com.example.android.miwok;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class ColorsActivity extends AppCompatActivity {
+public class ColorsFragment extends Fragment {
 
     MediaPlayer mediaPlayer;
     MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
@@ -57,9 +59,8 @@ public class ColorsActivity extends AppCompatActivity {
             };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.word_list, null);
 
         // Generate translations of number words
         // From dictionary at https://docs.google.com/document/d/16sQ-0r5zMrdRXUwOaYbTLNXADasuSYFpy7K0Bn8oVfg/pub?embedded=true
@@ -73,12 +74,12 @@ public class ColorsActivity extends AppCompatActivity {
         colourList.add(new Word("ṭopiisә", "dusty yellow", R.raw.color_dusty_yellow, R.drawable.color_dusty_yellow));
         colourList.add(new Word("chiwiiṭә", "mustard yellow", R.raw.color_mustard_yellow, R.drawable.color_mustard_yellow));
 
-        WordAdapter itemsAdapter = new WordAdapter(this, colourList);
-        ListView list = (ListView) findViewById(R.id.list_view);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), colourList);
+        ListView list = (ListView) view.findViewById(R.id.list_view);
         list.setBackgroundColor(getResources().getColor(R.color.category_colors));
         list.setAdapter(itemsAdapter);
         // Play audio file on click
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -87,12 +88,14 @@ public class ColorsActivity extends AppCompatActivity {
                         AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     releaseMediaPlayer();
-                    mediaPlayer = MediaPlayer.create(ColorsActivity.this, word.getSoundResourceId());
+                    mediaPlayer = MediaPlayer.create(getActivity(), word.getSoundResourceId());
                     mediaPlayer.start();
                     mediaPlayer.setOnCompletionListener(completionListener);
                 }
             }
         });
+
+        return view;
     }
 
     /**
@@ -116,7 +119,7 @@ public class ColorsActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }
