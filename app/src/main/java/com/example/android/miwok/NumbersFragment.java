@@ -18,10 +18,14 @@ package com.example.android.miwok;
 import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
@@ -35,7 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class NumbersActivity extends AppCompatActivity {
+public class NumbersFragment extends Fragment {
 
     private MediaPlayer mediaPlayer;
     private MediaPlayer.OnCompletionListener completionListener = new MediaPlayer.OnCompletionListener() {
@@ -64,9 +68,9 @@ public class NumbersActivity extends AppCompatActivity {
             };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.word_list, container, false);
 
         // Generate translations of number words
         // From dictionary at https://docs.google.com/document/d/16sQ-0r5zMrdRXUwOaYbTLNXADasuSYFpy7K0Bn8oVfg/pub?embedded=true
@@ -82,12 +86,12 @@ public class NumbersActivity extends AppCompatActivity {
         numberList.add(new Word("wo'e", "nine", R.raw.number_nine, R.drawable.number_nine));
         numberList.add(new Word("na'aacha", "ten", R.raw.number_ten, R.drawable.number_ten));
 
-        WordAdapter itemsAdapter = new WordAdapter(this, numberList);
-        ListView list = (ListView) findViewById(R.id.list_view);
+        WordAdapter itemsAdapter = new WordAdapter(getActivity(), numberList);
+        ListView list = (ListView) view.findViewById(R.id.list_view);
         list.setBackgroundColor(getResources().getColor(R.color.category_numbers));
         list.setAdapter(itemsAdapter);
         // Play audio file on click
-        audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -96,12 +100,14 @@ public class NumbersActivity extends AppCompatActivity {
                         AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
                 if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     releaseMediaPlayer();
-                    mediaPlayer = MediaPlayer.create(NumbersActivity.this, word.getSoundResourceId());
+                    mediaPlayer = MediaPlayer.create(getActivity(), word.getSoundResourceId());
                     mediaPlayer.start();
                     mediaPlayer.setOnCompletionListener(completionListener);
                 }
             }
         });
+
+        return view;
     }
 
     /**
@@ -126,7 +132,7 @@ public class NumbersActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }

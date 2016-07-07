@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".NumbersActivity"
+            android:name=".NumbersFragment"
             android:label="@string/category_numbers"
             android:parentActivityName=".MainActivity">
 
