@@ -46,4 +46,8 @@
     <style name="DefaultStyle" parent="MiwokStyle">
         <item name="android:textStyle">normal</item>
     </style>
+
+    <style name="TabStyle" parent="Widget.Design.TabLayout">
+        <item name=""
+    </style>
 </resources>

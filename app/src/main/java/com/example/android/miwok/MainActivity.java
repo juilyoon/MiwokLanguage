@@ -17,6 +17,7 @@ package com.example.android.miwok;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -39,5 +40,8 @@ public class MainActivity extends AppCompatActivity {
         TabFragmentAdapter adapter = new TabFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
+        // Set up tabs
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(viewPager);
     }
 }

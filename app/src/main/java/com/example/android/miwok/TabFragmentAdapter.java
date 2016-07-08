@@ -9,7 +9,9 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 public class TabFragmentAdapter extends FragmentPagerAdapter {
 
-    private Fragment[] pages = new Fragment[]{new NumbersFragment(), new ColorsFragment(), new FamilyFragment(), new PhrasesFragment()};
+    private Fragment[] pages = new Fragment[]{new NumbersFragment(), new ColorsFragment(),
+                                                new FamilyFragment(), new PhrasesFragment()};
+    private String[] titles = new String[]{"Numbers", "Colours", "Family", "Phrases"};
 
     public TabFragmentAdapter(FragmentManager fm) {
         super(fm);
@@ -23,5 +25,10 @@ public class TabFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return pages.length;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titles[position];
     }
 }
