@@ -18,6 +18,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorPrimaryDark">@color/primary_dark_color</item>
+        <item name="android:actionBarStyle">@style/AppBarStyle</item>
     </style>
 
     <!-- Style for a category of vocabulary words -->
@@ -45,6 +46,11 @@
     </style>
     <style name="DefaultStyle" parent="MiwokStyle">
         <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="AppBarStyle" parent="Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <!-- Remove shadow underneath -->
+        <item name="elevation">0dp</item>
     </style>
 
     <style name="TabStyle" parent="Widget.Design.TabLayout">
