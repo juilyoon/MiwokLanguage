@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Set up swipable page fragments
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        TabFragmentAdapter adapter = new TabFragmentAdapter(getSupportFragmentManager());
+        TabFragmentAdapter adapter = new TabFragmentAdapter(this, getSupportFragmentManager());
         viewPager.setAdapter(adapter);
 
         // Set up tabs

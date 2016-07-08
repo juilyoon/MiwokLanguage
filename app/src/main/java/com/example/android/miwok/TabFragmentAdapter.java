@@ -1,5 +1,7 @@
 package com.example.android.miwok;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,10 +13,13 @@ public class TabFragmentAdapter extends FragmentPagerAdapter {
 
     private Fragment[] pages = new Fragment[]{new NumbersFragment(), new ColorsFragment(),
                                                 new FamilyFragment(), new PhrasesFragment()};
-    private String[] titles = new String[]{"Numbers", "Colours", "Family", "Phrases"};
+    private Integer[] titles = new Integer[]{R.string.category_numbers, R.string.category_colors,
+                                            R.string.category_family, R.string.category_phrases};
+    private Context context;
 
-    public TabFragmentAdapter(FragmentManager fm) {
+    public TabFragmentAdapter(Context context, FragmentManager fm) {
         super(fm);
+        this.context = context;
     }
 
     @Override
@@ -29,6 +34,6 @@ public class TabFragmentAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return titles[position];
+        return context.getString(titles[position]);
     }
 }
